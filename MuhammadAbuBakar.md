@@ -23,4 +23,12 @@ git commit
 ```
 
 # New Section
-##Course Outline
+## Course Outline
+## Physics
+
+You may be getting spam texts because your phone number has ended up on a marketing list,\ 
+or because the technology and tools scammers use to spam people generated your number automatically.\
+If you start receiving spam texts, someone is likely trying to obtain your personal information.
+
+# Section 9
+## Secondary Section

@@ -4,7 +4,7 @@ import math
 def calculator():
 
     print("Assalam u Alaikum")
-    print("welcome to your calculator app....")
+    print("welcome to your calculator application....")
     print("Select an operation, that you would like to proceed with....0")
 
     #basic arithmetic operations
@@ -73,9 +73,9 @@ def calculator():
     print("26. Product of Roots of a polynomial equation: ")
 
     #differentiation and Integration
-    print(". Differentiation")
-    print(". Integration")
-    print("Invalid Choice was entered. Kindly select any of from the above choices.....")
+    print("27. Differentiation")
+    print("28. Integration")
+    print("Press any other key to exit....")
 
     option = input()
 
@@ -133,6 +133,17 @@ def calculator():
         return p_o_r_c()
     elif option == 25:
         return s_o_r_p_i()
+    elif option == 26:
+        return p_o_r_p_i()
+    elif option == 27:
+        return differentiation()
+    elif option ==  28:
+        return intgration()
+    else:
+        print("Invalid Choice was entered......")
+        print("Exiting program....")
+        return None 
+        # utilising the none datatype in python
 
 def basicops(sym):
 
@@ -263,7 +274,7 @@ def factorial():
     print("Please enter the number of which you would like to print the factorial of: ")
     n = float(input())
 
-    fact = 1;
+    fact = 1
 
     for m in range(n, 1, -1):
         fact *= n
@@ -336,7 +347,10 @@ def fibonacci():
 
     return
 
-# fibonacci sequence upto nth term pattern - Recursive Approach
+# fibonacci sequence upto nth term pattern - Recursive Approach limited only to calculate the values for the nth term in the fibonacci sequence 
+# I was uanbale to figre out/work around a method to use a recursive approach to print the pattern 
+# so the only option for printing the pattern at the end was via the usage of a for loop 
+# I did try using the recursive approach but it resulted in printing the same value multiple times which was agaisnt my desired output that I wanted to view on the terminal window 
 
 def r_f_p(m, memo={}):
     if m == 1:
@@ -511,7 +525,7 @@ def sum_of_roots_polynomial(coefficients):
 
 def s_o_r_p_i():
 
-    print("This formulae can also correctly process polynomial equations with zero coefficients....")
+    print("This formulae can correctly process polynomial equations with zero coefficients....")
     print("Please start entering the coefficients of your polynomial equation, starting from the highest power term: ")
 
     #using a list since they are dynamic and python does not have arrays
@@ -521,13 +535,18 @@ def s_o_r_p_i():
     while True:
 
         try:
-            c = input("Enter a co-efficient or you may procede with entering done to finish: ")
+            c = input("Enter a co-efficient or you may procede with entering 'done' to finish: ")
 
             #using lower function to convert into lower case
 
             if c.lower() == 'done':
+
+                if len(coefficients) < 2:
+                    print("You must enter at least two coefficients. Please start again")
+                else:
+                    break
+            
                 #break statement breaks or exits the while loop
-                break
 
             coefficients.append(float(c))
         except  ValueError:
@@ -535,3 +554,110 @@ def s_o_r_p_i():
 
     ans = sum_of_roots_polynomial(coefficients)
     print("The sum of roots of the polynomial for your equation is: {0}" .format(ans))
+
+
+# calculating the product of roots of a polynomial equation based on the vietas formulae relation
+# the product of roots can be computed using the relation/formulae (-1)**degreeof polynomial * a[0] / a[len - 1]
+# where a represents the list we have
+# a[-1] or a[deg] is the coefficient of the constant term
+# a[0] is the coefficient of the x^n term (leading coefficient)
+
+def product_of_roots_polynomial(values):
+
+    if len(values) < 2:
+        # whilst raising the value error we can type in we can type the prompt we would like to display in quotation marks into the parenthesis of ValueError()
+        raise ValueError("Polynomial must have at least two coefficients....")
+    
+    #compute the degree of our polyomial 
+    # we subtract 1 from length because python has 0 based indexing
+
+    deg = len(values) - 1
+
+    numenator = values[0] 
+
+    # denominator = values[-1] 
+    # or we can use 
+    denominator = values[deg]
+
+    return (-1)**deg * numenator / denominator 
+
+def p_o_r_p_i():
+
+    print("This formulae can correctly process polynomial equations with zero coefficients....")
+    print("Please start entering the coefficients of your polynomial equation, starting from the highest power term: ")
+
+    coeff = []
+
+    while True:
+
+        try:
+            print("Enter a coefficient or you may proceed with entering 'done' to finish: ")
+            d = input()
+
+            if d.lower() == 'done':
+
+                if len(coeff) < 2:
+                    print("You must enter at least two coefficients. Please start again")
+                else:
+                    break
+            
+            coeff.append(float(d))
+
+        except ValueError:
+            print("Invalid Input, kindly enter a numeric value or type in 'done' to halth the append operation to your list....")
+    
+    ans = product_of_roots_polynomial(coeff)
+    print("The product of roots of the polynomial for your equation is:", ans)
+
+# Differentiation 
+# The attempt here was to refrain from the utiluisation of any of python's library functions, not inbuilt functions though
+# I utilised the finite difference method to compute the dervative of a function f at a given point x
+# Please note this is an approximation and might not compute for us the exact values
+
+def diff(function, x_val, h_val):
+    
+    #reason for utilising h = 1e-5 is that in most cases this would suffice for computing the approximate differential
+
+    return ((function(x_val + h_val)) - (function(x_val - h_val))) / (2 * h_val)
+    # division by 2h to obtain the central difference approximation of the derivative
+
+# parent function that callls the child function
+# the parent function only serves the purpose of taking inputs
+
+def differentiation():
+
+    print("Kindly enter the equation that you would like to differentiate: ")
+    print("Example equations can be: 'x^5 - 3x^4 + 7x^3 + 94x^2 + 643' or '9x - 172' ")
+    # input function always returns a sttring value
+    eq = input()
+    
+    print("Enter at which point do you desire  to differentiate: ")
+    print("Example inputs can be 'x = 63' ")
+    x = float(input())
+
+    print("We will be taking the step size by default as h = 1e-5, we could have chosen a more precise value but that might lead to floating point / decimal number errors: ")
+    h = 1e-5
+
+    #try except is used for error handling in python
+
+    try:
+
+        # eval() is a function that takes in a strimng and returns it as a pyhon expression
+
+        equation = lambda x: eval(eq)
+
+        # lambda arguments: expression is the general syntax for the lambda function, whilst lambda is a reserved word in python
+        # it creates a small function in python without following the due necessary syntax for that function, and this function does not have a name
+        # a dynamic fUnction was created Instead of harDcoding a specific mathematical function, so as to ensure we can handle arbitrary user input in a flexible and concise way
+
+        d = diff(equation, x, h)
+
+        print("The derivative of the provided equation at {0} point x is appproximately: {1} " .format(x, d))
+    
+    except Exception as e:
+    
+        print("Error: {0}. Please ensure your equation is correct and try again." .format(e))
+
+def integration():
+
+

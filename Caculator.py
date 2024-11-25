@@ -8,7 +8,7 @@ def calculator():
     print("Select an operation, that you would like to proceed with....0")
 
     #basic arithmetic operations
-    print("1.Addition")
+    print("1. Addition")
     print("2. Subtraction")
     print("3. Division")
     print("4. Multiplication")
@@ -72,12 +72,21 @@ def calculator():
     # Product of roots of a polynomial equation
     print("26. Product of Roots of a polynomial equation: ")
 
-    #differentiation and Integration
+    #differentiation
     print("27. Differentiation")
+
+    #Transpose of a Matrix
     print("28. Transpose Of A Matrix")
+
+    #Area of a circle
+    print("29. Area of a circle")
+
+    #Volume of a circle
+    print("30. Volume of a circle")
+
     print("Press any other key to exit....")
 
-    option = input()
+    option = int(input())
 
     if option == 1:
         return basicops('+')
@@ -137,10 +146,15 @@ def calculator():
         return p_o_r_p_i()
     elif option == 27:
         return differentiation()
-    elif option ==  28:
+    elif option == 28:
         return matrixtranspose()
+    elif option == 29:
+        return area_of_circle()
+    elif option == 30:
+        return vol_of_sphere()
+    
     else:
-        print("Invalid Choice was entered......")
+        print("Invalid Choice was entered/Option chosen is unavailable......")
         print("Exiting program....")
         return None 
         # utilising the none datatype in python
@@ -151,32 +165,37 @@ def basicops(sym):
     n2 = float(input("Please enter your second operand: "))
 
     if sym == '+':
-        return n1 + n2
+        return print("The answer is: {0} " .format(n1 + n2))
     elif sym == '-':
-        return n1 - n2
+        return print("The answer is: {0} " .format(n1 - n2))
     elif sym == '*':
-        return n1 * n2
+        return print("The answer is: {0} " .format(n1 * n2))
     elif sym == '/':
         if n2 == 0:
             print("Math Error! Division by zero (non-numeric values) is infinity....")
             return
-        return n1 / n2
+        return print("The answer is: {0} " .format(n1 / n2))
     elif sym == '//':
         if n2 == 0:
             print("Math Error! Division by zero (non-numeric values) is infinity....")
             return
-        return n1 // n2
+        return print("The answer is: {0} " .format(n1 // n2))
     elif sym == '%':
-        return n1 % n2
+        return print("The answer is: {0} " .format(n1 % n2))
     elif sym == '**':
-        return n1 ** n2
+        return print("The answer is: {0} " .format(n1 ** n2))
 
 def evenorodd():
 
     print("Please enter a number to check for if the number is even or odd")
-    n1 = input()
+    n1 = int(input())
 
-    print("Even Number.") if n1 % 2 == 0 else print("Odd Number.")
+    if n1 % 2 == 0:
+        print("Even Number")
+    else:
+        print("Odd Number.")
+
+    return
 
 def squareroot():
 
@@ -185,27 +204,27 @@ def squareroot():
      #datatype so that we can perform valid mathematical operations with it
 
      n = float(n)
-     return n ** 0.5
+     return print("The answer is: {0} " .format(n ** 0.5))
 
 
 def cuberoot():
 
     n = input("Kindly enter the the number for which you want to find the cube root of: ")
     n = float(n)
-    return n ** 1/3
+    return print("The answer is: {0} " .format(n ** (1/3)))
 
 
 def square():
 
-    n = input("Kindly enter the the number for which you want to find the square of: ")
+    n = input("Kindly enter the the number for which you want to find the cube of: ")
     n = float(n)
-    return n ** 2
+    return print("The answer is: {0} " .format(n ** 2))
 
 def cube():
 
     n = input("Kindly enter the the number for which you want to find the square of: ")
     n = float(n)
-    return n ** 3
+    return print("The answer is: {0} " .format(n ** 3))
 
 def tableprinter():
 
@@ -258,26 +277,26 @@ def tableprintervalueinput():
 
     print("Kindly tell the ending term of your table: ")
     e_i = float(input())
-    e_i += 1
 
     tableprinterrecursive(num, s_i, e_i)
 
 def reciprocal():
     print("Kindly enter the number that you would like to find the reciprocal of: ")
     n1 = float(input())
-    return n1 ** -1
+    return print("The answer is: {0} " .format(n1 ** -1))
 
 # Factorial function with loops
 
 def factorial():
 
     print("Please enter the number of which you would like to print the factorial of: ")
-    n = float(input())
+    n = int(input())
 
     fact = 1
 
-    for m in range(n, 1, -1):
-        fact *= n
+    x = n
+    for x  in range(x, 1, -1):
+        fact *= x
 
     print("The factorial for the number is: {0}" .format(fact))
 
@@ -345,7 +364,8 @@ def fibonacci():
             n1 = n2
             n2 = ans
 
-    return
+    print("Term number {0} in the fibonacci sequence is: {1}" .format(n, ans))
+    return 
 
 # fibonacci sequence upto nth term pattern - Recursive Approach limited only to calculate the values for the nth term in the fibonacci sequence 
 # I was uanbale to figre out/work around a method to use a recursive approach to print the pattern 
@@ -353,10 +373,13 @@ def fibonacci():
 # I did try using the recursive approach but it resulted in printing the same value multiple times which was agaisnt my desired output that I wanted to view on the terminal window 
 
 def r_f_p(m, memo={}):
+
     if m == 1:
         return 0
     elif m == 2:
         return 1
+
+    # the alternative approach instead of memoization
 
     # prev1 = r_f_p(m - 1)
     # prev2 = r_f_p(m - 2)
@@ -391,7 +414,7 @@ def degrees_into_radians():
 
     try:
         print("The value in Radians is: ")
-        return n * math.pi / 180
+        return print("The answer is: {0}" .format(n * math.pi / 180))
     except ValueError:
         print("Invalid Input, Please enter a numeric value....")
         # we will and can return None as None is also a scalar datatype in python that can only store one value
@@ -405,7 +428,7 @@ def radians_into_degrees():
 
     try:
         print("The value in Degrees is: ")
-        return n * 180 / math.pi
+        return print("The answer is: {0}" .format(round(n * 180 / math.pi)))
     except ValueError:
         print("Invalid Input, Please enter a numeric value....")
         # we will and can return None as None is also a scalar datatype in python that can only store one value
@@ -432,8 +455,7 @@ def s_o_r_q():
         print("Exiting Program....")
         return None
 
-    print("The Sum of roots of your quadratic equation are: ")
-    return -n2/n1
+    return print("The Sum of roots of your quadratic equation are: {0}" .format(-n2/n1))
 
 def p_o_r_q():
 
@@ -453,8 +475,7 @@ def p_o_r_q():
         print("Exiting Program....")
         return None
 
-    print("The Product of roots of your quadratic equation are: ")
-    return n3/n1
+    return print("The product of roots of your quadratic equation are: {0}" .format(n3/n1))
 
 
 # sum and the product of roots of a cubic equation
@@ -480,8 +501,7 @@ def s_o_r_c():
         print("Exiting Program....")
         return None
 
-    print("The Sum of roots of your cubic equation are: ")
-    return -n2 / n1
+    return print("The sum of roots of your cubic equation are: {0}" .format(-n2 / n1))
 
 def p_o_r_c():
 
@@ -504,8 +524,7 @@ def p_o_r_c():
         print("Exiting Program....")
         return None
 
-    print("The Sum of roots of your cubic equation are: ")
-    return -n4 / n1
+    return print("The product of roots of your cubic equation are: {0}" .format(-n4 / n1))
 
 # Calculating the sum of roots of any polynomial based on the vieta's formulae
 # The sum of the roots in a polynomial is -a[n-1] / a[n], where:
@@ -573,11 +592,11 @@ def product_of_roots_polynomial(values):
 
     deg = len(values) - 1
 
-    numenator = values[0] 
+    denominator = values[0] 
 
     # denominator = values[-1] 
     # or we can use 
-    denominator = values[deg]
+    numenator = values[-1]
 
     return (-1)**deg * numenator / denominator 
 
@@ -621,13 +640,13 @@ def diff(function, x_val, h_val):
     return ((function(x_val + h_val)) - (function(x_val - h_val))) / (2 * h_val)
     # division by 2h to obtain the central difference approximation of the derivative
 
-# parent function that callls the child function
+# parent function that calls the child function
 # the parent function only serves the purpose of taking inputs
 
 def differentiation():
 
     print("Kindly enter the equation that you would like to differentiate: ")
-    print("Example equations can be: 'x^5 - 3x^4 + 7x^3 + 94x^2 + 643' or '9x - 172' ")
+    print("Example equations can be: 'x**5 - 3x**4 + 7x**3 + 94x**2 + 643' or '9*x - 172' (any coefficient must be entered as 9*x for 9x)")
     # input function always returns a sttring value
     eq = input()
     
@@ -644,7 +663,7 @@ def differentiation():
 
         # eval() is a function that takes in a strimng and returns it as a pyhon expression
 
-        equation = lambda x: eval(eq)
+        equation = lambda x: eval(eq, {"x" : x})
 
         # lambda arguments: expression is the general syntax for the lambda function, whilst lambda is a reserved word in python
         # it creates a small function in python without following the due necessary syntax for that function, and this function does not have a name
@@ -699,4 +718,28 @@ def matrixtranspose():
 
     #this prints out the matrix row by row in a tabular format 
 
-calculator()
+# Area of a circle  
+
+def area_of_circle():
+
+    print("Enter the radius of your circle: ")
+    r = float(input())
+
+    print("The Aread of your circle is: {0}" .format( math.pi * r * r))
+
+    return None
+
+# Volume of a sphere
+
+def vol_of_sphere():
+
+    print("Enter the radius of your sphere: ")
+    r = float(input())
+
+    ans = (4/3) * math.pi * (r**3)
+    print("The volume of your sphere is {0}" .format(ans))
+
+    return None
+
+# Calling the main calculator function which further calls the other functions based on the user input
+# calculator()

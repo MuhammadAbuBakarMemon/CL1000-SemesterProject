@@ -1,0 +1,537 @@
+import math
+# we imported the math library to use in for precise and accurate calculations regarding the constants of pi in our function
+
+def calculator():
+
+    print("Assalam u Alaikum")
+    print("welcome to your calculator app....")
+    print("Select an operation, that you would like to proceed with....0")
+
+    #basic arithmetic operations
+    print("1.Addition")
+    print("2. Subtraction")
+    print("3. Division")
+    print("4. Multiplication")
+
+    # the integer part of the division
+    # (gives us the dividend)
+    print("5. Floor Division/DIV Function")
+
+    print("6. Remainder/MOD Function")
+
+    # (this will always return a float (reaL/decimal) value)
+    print("7. Exponentiation/Power Function")
+
+    print("8. Even or Odd")
+
+    #common reciprocal power funtionas
+    print("9. Square Root")
+    print("10. Cube Root")
+
+    #common power functions
+    print("11. Square")
+    print("12. Cube")
+
+    #table printer of the number that the user desires upto n terms
+    print("13. Table Printer")
+
+    #reciprocal of a number
+    print("14. Reciprocal of a number")
+
+    #factorial of a number
+    print("15. Factorial")
+
+    #collatz conjecture pattern
+    print("16. Collatz Conjecture Pattern")
+
+    #fibonacci sequence upto n terms
+    print("17. Fibonacci nth term")
+
+    # fibonacci sequence pattern recursive function
+    print("18. Fibonacci Sequence upto nth term")
+
+    # Degree to Radian and viceversa conversions
+    print("19. Degree to Radian")
+    print("20. Radian to Degree")
+
+    # Sum of roots of a quadratic equation
+    print("21. Sum of Roots of a quadratic equation: ")
+
+    # Product of roots of a quadratic equation
+    print("22. Product of Roots of a quadratic equation: ")
+
+    # Sum of roots of a Cubic equation
+    print("23. Sum of Roots of a cubic equation: ")
+
+    # Product of roots of a Cubic equation
+    print("24. Product of Roots of a cubic equation: ")
+
+    # Sum of roots of a polynomial equation - via application of vieta's formulae
+    print("25. Sum of Roots of a polynomial equation: ")
+
+    # Product of roots of a polynomial equation
+    print("26. Product of Roots of a polynomial equation: ")
+
+    #differentiation and Integration
+    print(". Differentiation")
+    print(". Integration")
+    print("Invalid Choice was entered. Kindly select any of from the above choices.....")
+
+    option = input()
+
+    if option == 1:
+        return basicops('+')
+    elif option == 2:
+        return basicops('-')
+    elif option == 3:
+        return basicops('/')
+    elif option == 4:
+        return basicops('*')
+    elif option == 5:
+        return basicops('//')
+    elif option == 6:
+        return basicops('%')
+    elif option == 7:
+        return basicops('**')
+    elif option == 8:
+        return evenorodd()
+    elif option == 9:
+        return squareroot()
+    elif option == 10:
+        return cuberoot()
+    elif option == 11:
+        return square()
+    elif option == 12:
+        return cube()
+    elif option == 13:
+        # we can either of the functions both will perform the same task
+        # return tableprinter()
+        return tableprintervalueinput()
+    elif option == 14:
+        return reciprocal()
+    elif option == 15:
+        # # we can either of the functions both will perform the same task
+        # return r_factorial()
+        return factorial()
+    elif option == 16:
+        return collatzconjecture()
+    elif option == 17:
+        return fibonacci()
+    elif option == 18:
+        return r_fibonacci_pattern()
+    elif option == 19:
+        return degrees_into_radians()
+    elif option == 20:
+        return radians_into_degrees()
+    elif option == 21:
+        return s_o_r_q()
+    elif option == 22:
+        return p_o_r_q()
+    elif option == 23:
+        return s_o_r_c()
+    elif option == 24:
+        return p_o_r_c()
+    elif option == 25:
+        return s_o_r_p_i()
+
+def basicops(sym):
+
+    n1 = float(input("Please enter the first operand: "))
+    n2 = float(input("Please enter your second operand: "))
+
+    if sym == '+':
+        return n1 + n2
+    elif sym == '-':
+        return n1 - n2
+    elif sym == '*':
+        return n1 * n2
+    elif sym == '/':
+        if n2 == 0:
+            print("Math Error! Division by zero (non-numeric values) is infinity....")
+            return
+        return n1 / n2
+    elif sym == '//':
+        if n2 == 0:
+            print("Math Error! Division by zero (non-numeric values) is infinity....")
+            return
+        return n1 // n2
+    elif sym == '%':
+        return n1 % n2
+    elif sym == '**':
+        return n1 ** n2
+
+def evenorodd():
+
+    print("Please enter a number to check for if the number is even or odd")
+    n1 = input()
+
+    print("Even Number.") if n1 % 2 == 0 else print("Odd Number.")
+
+def squareroot():
+
+     n = input("Kindly enter the the number for which you want to find the square root of: ")
+     #input function only returns a string so we need to type cast that value to a valid
+     #datatype so that we can perform valid mathematical operations with it
+
+     n = float(n)
+     return n ** 0.5
+
+
+def cuberoot():
+
+    n = input("Kindly enter the the number for which you want to find the cube root of: ")
+    n = float(n)
+    return n ** 1/3
+
+
+def square():
+
+    n = input("Kindly enter the the number for which you want to find the square of: ")
+    n = float(n)
+    return n ** 2
+
+def cube():
+
+    n = input("Kindly enter the the number for which you want to find the square of: ")
+    n = float(n)
+    return n ** 3
+
+def tableprinter():
+
+    #the value for which we want the table of
+    print("Kindly tell us the table you would like to print the table of: ")
+    num = float(input())
+
+    #the starting index of the table that will be printed
+    print("Kindly tell the starting term of your table: ")
+    s_i = float(input())
+
+    #alternative code we can use, if the user only knows and wants the specific number of terms of be printed out from the starting index
+    #andf if the user does not want to himself calculate the ending index for the table that is to be printed out
+
+    # print("How many number of terms would you like to print out the table for: ")
+    # terms = float(input())
+    # this part calculates the ending terms itsefl based on the the number of terms the user desires the function to print out from the starting position
+    # terms += s_i
+    # e_i = terms
+
+    #the ending index of the table that will be printed
+    print("Kindly tell the ending term of your table: ")
+    e_i = float(input())
+
+    #the step with which we desire each of the successive value to be printed out by our table printer function
+    print("Kindly tell me the step for each successive term in your table: ")
+    step = float(input())
+
+    for m in range(s_i, e_i + 1, step):
+        print("{} x {} = {}" .format(num, s_i, num * s_i))
+
+#Recursive Table printer function
+# perform the same task but with recursion
+
+def tableprinterrecursive(n, s, e):
+
+    if s > e:
+        return
+
+    print("{0} x {1} = {2}" .format(n, s, n * s))
+    tableprinterrecursive(n, s + 1, e)
+
+def tableprintervalueinput():
+
+    print("Please enter the number for which you would like to print the table of: ")
+    num = float(input())
+
+    print("Kindly tell the starting term of your table: ")
+    s_i = float(input())
+
+    print("Kindly tell the ending term of your table: ")
+    e_i = float(input())
+    e_i += 1
+
+    tableprinterrecursive(num, s_i, e_i)
+
+def reciprocal():
+    print("Kindly enter the number that you would like to find the reciprocal of: ")
+    n1 = float(input())
+    return n1 ** -1
+
+# Factorial function with loops
+
+def factorial():
+
+    print("Please enter the number of which you would like to print the factorial of: ")
+    n = float(input())
+
+    fact = 1;
+
+    for m in range(n, 1, -1):
+        fact *= n
+
+    print("The factorial for the number is: {0}" .format(fact))
+
+# Recursive Factorial function
+
+def r_f_f(m):
+
+    if m < 0:
+        print("The factorial is not defined for negative numbers....")
+        return
+    elif m == 0 or m == 1:
+        return 1
+    else:
+        return m * r_f_f(m - 1)
+
+def r_factorial():
+
+    print("Please enter the number you would like to figure out the factorial for: ")
+    n = float(input())
+
+    print("The factorial of your number is: {0}" .format(r_f_f(n)))
+
+# An interesting and unique pattern in mathematics that no matter what the integer is it will always end in the pattern 8, 4, 2, 1....
+
+def collatzconjecture():
+
+    n = int(input("Please enter the number you would like to apply the collatz conjecture for and print out the pattern for: "))
+
+    while True:
+        if n % 2 == 0:
+            print("{0}" .format(n))
+            n //= 2
+        else:
+            print("{0}" .format(n))
+            n = 3 * n + 1
+
+        if n == 1:
+            print("{0}" .format(n))
+            break
+
+# A pattern in which the nth term except for the 1st and the last term is the sum of the preceding two terms
+# This only calculates the first term
+
+def fibonacci():
+
+    print("Enter the nth term which you would like from the fibonacci sequence: ")
+    n = int(input())
+
+    if n < 1:
+        print("There least nth term in the availabe sequence is 1. Kindly only enter values that are greater than 1.")
+        return
+
+    ans = 0
+
+    for m in range(1, n + 1):
+
+        if m == 1:
+            n1 = 0
+            ans = n1
+        elif m == 2:
+            n2 = 1
+            ans = n2
+        else:
+            ans = n2 + n1
+            n1 = n2
+            n2 = ans
+
+    return
+
+# fibonacci sequence upto nth term pattern - Recursive Approach
+
+def r_f_p(m, memo={}):
+    if m == 1:
+        return 0
+    elif m == 2:
+        return 1
+
+    # prev1 = r_f_p(m - 1)
+    # prev2 = r_f_p(m - 2)
+    # result = prev1 + prev2
+    # print("Term number {0} in the sequence is: {1}" .format(m, result))
+    # return result
+
+    # using an advanced python concept, the concept of memoization which prevents recursive call recalculating previously computed values, leveraging
+    # the procesing time and saving space on the stack frame
+
+    if m not in memo:
+        memo[m] = r_f_p(m - 1, memo) + r_f_p(m - 2, memo)
+
+    return memo[m]
+
+
+# initial function that calls the function
+
+def r_fibonacci_pattern():
+    print("Enter the number of terms upto which you would like the fibonacci sequence printed for: ")
+    num = int(input())
+
+    for m in range(1, num + 1):
+        print("Term Number {0} has the term in the sequence {1}".format(m, r_f_p(m)))
+
+#conversion Functions
+
+def degrees_into_radians():
+
+    print("Please enter the value in degrees: ")
+    n = float(input())
+
+    try:
+        print("The value in Radians is: ")
+        return n * math.pi / 180
+    except ValueError:
+        print("Invalid Input, Please enter a numeric value....")
+        # we will and can return None as None is also a scalar datatype in python that can only store one value
+        # which is a none value
+        return None
+
+def radians_into_degrees():
+
+    print("Please enter the value in radians: ")
+    n = float(input())
+
+    try:
+        print("The value in Degrees is: ")
+        return n * 180 / math.pi
+    except ValueError:
+        print("Invalid Input, Please enter a numeric value....")
+        # we will and can return None as None is also a scalar datatype in python that can only store one value
+        # which is a none value
+        return None
+
+#sum and the product of roots of a quadratic equation
+
+def s_o_r_q():
+
+    print("Please note this technique is only valid if all the co-efficients of the equation are non-zero constants....")
+
+    print("Please enter the co-efficient of x^2 in the quadratic: ")
+    n1 = float(input())
+
+    print("Please enter the co-efficient of x in the quadratic: ")
+    n2 = float(input())
+
+    print("Please enter the co-efficient of the constant in the quadratic: ")
+    n3 = float(input())
+
+    if n1 == 0 or n2 == 0 or n3 == 0:
+        print("The technique/shortcut is only valid for non-zero coefficient constants for the equation that you provided")
+        print("Exiting Program....")
+        return None
+
+    print("The Sum of roots of your quadratic equation are: ")
+    return -n2/n1
+
+def p_o_r_q():
+
+    print("Please note this technique is only valid if all the co-efficients of the equation are non-zero constants....")
+
+    print("Please enter the co-efficient of x^2 in the quadratic: ")
+    n1 = float(input())
+
+    print("Please enter the co-efficient of x in the quadratic: ")
+    n2 = float(input())
+
+    print("Please enter the co-efficient of the constant in the quadratic: ")
+    n3 = float(input())
+
+    if n1 == 0 or n2 == 0 or n3 == 0:
+        print("The technique/shortcut is only valid for non-zero coefficient constants for the equation that you provided")
+        print("Exiting Program....")
+        return None
+
+    print("The Product of roots of your quadratic equation are: ")
+    return n3/n1
+
+
+# sum and the product of roots of a cubic equation
+
+def s_o_r_c():
+
+    print("Please note this technique is only valid if all the co-efficients of the equation are non-zero constants....")
+
+    print("Please enter the co-efficient of x^3 in the cubic: ")
+    n1 = float(input())
+
+    print("Please enter the co-efficient of x^2 in the cubic: ")
+    n2 = float(input())
+
+    print("Please enter the co-efficient of x (the linear factor) in the cubic: ")
+    n3 = float(input())
+
+    print("Please enter the co-efficient of the constant in the cubic: ")
+    n4 = float(input())
+
+    if n1 == 0 or n2 == 0 or n3 == 0 or n4 == 0:
+        print("The technique/shortcut is only valid for non-zero coefficient constants for the equation that you provided")
+        print("Exiting Program....")
+        return None
+
+    print("The Sum of roots of your cubic equation are: ")
+    return -n2 / n1
+
+def p_o_r_c():
+
+    print("Please note this technique is only valid if all the co-efficients of the equation are non-zero constants....")
+
+    print("Please enter the co-efficient of x^3 in the cubic: ")
+    n1 = float(input())
+
+    print("Please enter the co-efficient of x^2 in the cubic: ")
+    n2 = float(input())
+
+    print("Please enter the co-efficient of x (the linear factor) in the cubic: ")
+    n3 = float(input())
+
+    print("Please enter the co-efficient of the constant in the cubic: ")
+    n4 = float(input())
+
+    if n1 == 0 or n2 == 0 or n3 == 0 or n4 == 0:
+        print("The technique/shortcut is only valid for non-zero coefficient constants for the equation that you provided")
+        print("Exiting Program....")
+        return None
+
+    print("The Sum of roots of your cubic equation are: ")
+    return -n4 / n1
+
+# Calculating the sum of roots of any polynomial based on the vieta's formulae
+# The sum of the roots in a polynomial is -a[n-1] / a[n], where:
+# a[n-1] is the coefficient of the x^(n-1) term
+# a[n] is the coefficient of the x^n term (leading coefficient)
+
+def sum_of_roots_polynomial(coefficients):
+
+    if len(coefficients) < 2:
+        #the raise keywordd is used to trigger an exception when any condition is not met
+        raise ValueError("Polynomial must have at least two coefficients....")
+
+    l_c = coefficients[0]
+    s_l_c = coefficients[1]
+
+    return -s_l_c / l_c
+
+def s_o_r_p_i():
+
+    print("This formulae can also correctly process polynomial equations with zero coefficients....")
+    print("Please start entering the coefficients of your polynomial equation, starting from the highest power term: ")
+
+    #using a list since they are dynamic and python does not have arrays
+
+    coefficients = []
+
+    while True:
+
+        try:
+            c = input("Enter a co-efficient or you may procede with entering done to finish: ")
+
+            #using lower function to convert into lower case
+
+            if c.lower() == 'done':
+                #break statement breaks or exits the while loop
+                break
+
+            coefficients.append(float(c))
+        except  ValueError:
+            print("Invalid input, kindly enter a numeric value or done to stop the append operation to your list....")
+
+    ans = sum_of_roots_polynomial(coefficients)
+    print("The sum of roots of the polynomial for your equation is: {0}" .format(ans))

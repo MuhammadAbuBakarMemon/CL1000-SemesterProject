@@ -74,7 +74,7 @@ def calculator():
 
     #differentiation and Integration
     print("27. Differentiation")
-    print("28. Integration")
+    print("28. Transpose Of A Matrix")
     print("Press any other key to exit....")
 
     option = input()
@@ -138,7 +138,7 @@ def calculator():
     elif option == 27:
         return differentiation()
     elif option ==  28:
-        return intgration()
+        return matrixtranspose()
     else:
         print("Invalid Choice was entered......")
         print("Exiting program....")
@@ -658,6 +658,45 @@ def differentiation():
     
         print("Error: {0}. Please ensure your equation is correct and try again." .format(e))
 
-def integration():
+def matrixtranspose():
 
+    print("Please specify the number of columns you would like in your matrix: ")
+    c = int(input())
 
+    print("Please specify the number of rows you would like in your matrix: ")
+    r = int(input())
+
+    mat = [[0 for _ in range(c)] for _ in range(r)]
+    transpose = [[0 for _ in range(r)] for _ in range(c)]
+
+    for x in range(r):
+
+        for y in range(c):
+
+            print("Enter element: ")
+            mat[x][y] = int(input())
+
+    for x in range(r):
+
+        for y in range(c):
+
+            transpose[y][x] = mat[x][y]
+
+    print("The transpose of your marix is: ")
+
+    # one technique to print out the transposed matrix
+
+    # for x in range(c):
+
+    #     for y in range(r):
+
+    #         print("ELement of transpose matrix at row number {0} and column number {1} is: {2}" .format(x, y, transpose[x][y]))
+
+    # a more better approach
+
+    for row in transpose:
+        print(row)
+
+    #this prints out the matrix row by row in a tabular format 
+
+calculator()
